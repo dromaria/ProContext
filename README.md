@@ -12,10 +12,7 @@ REST API для управления списком пользователей
 ### Просмотр списка пользователей
     GET /api/users
 
-Data Schema (все поля опциональные):
-
-    limit: int
-    page: int
+    GET /api/users?limit={int}&page={int}
 ### Просмотр конкретного пользователя
     GET /api/users/{id}
 ### Добавление нового пользователя
