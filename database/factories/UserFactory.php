@@ -15,4 +15,11 @@ class UserFactory extends Factory
         ];
     }
 
+    public function withId(int $id): self
+    {
+        return $this->state([
+            'id' => $id
+        ]);
+    }
+
 }

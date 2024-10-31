@@ -14,11 +14,13 @@ class PaginationRequest extends BaseRequest
         ];
     }
 
-    public function getLimit(){
-        return $this->validated('limit');
+    public function getLimit(): int
+    {
+        return $this->validated('limit') ?? 10;
     }
 
-    public function getPage(){
-        return $this->validated('page');
+    public function getPage(): int
+    {
+        return $this->validated('page') ?? 1;
     }
 }
