@@ -23,4 +23,9 @@ class User extends Authenticatable
         'email',
         'age'
     ];
+
+    public static function factory(): UserFactory
+    {
+        return UserFactory::new();
+    }
 }
