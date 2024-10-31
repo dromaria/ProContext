@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\User;
 
 use App\DTO\User\UserDTO;
 use App\Models\User;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class StoreUserAction
+class UpdateUserAction
 {
     public function __construct(private UserRepositoryInterface $repository)
     {
     }
 
-    public function execute(UserDTO $userDTO): Model|User
+    public function execute(int $id, UserDTO $userDTO): Model|User
     {
-        return $this->repository->store($userDTO);
+        return $this->repository->update($id, $userDTO);
     }
 }

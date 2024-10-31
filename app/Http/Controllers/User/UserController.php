@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Actions\DestroyUserAction;
-use App\Actions\IndexUserAction;
-use App\Actions\ShowUserAction;
-use App\Actions\StoreUserAction;
-use App\Actions\UpdateUserAction;
+use App\Actions\User\DestroyUserAction;
+use App\Actions\User\IndexUserAction;
+use App\Actions\User\ShowUserAction;
+use App\Actions\User\StoreUserAction;
+use App\Actions\User\UpdateUserAction;
 use App\DTO\Pagination\PaginationDTO;
 use App\DTO\User\UserDTO;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Pagination\PaginationRequest;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\User;
 
 use App\DTO\Pagination\PaginationDTO;
 use App\Repositories\Interfaces\UserRepositoryInterface;
