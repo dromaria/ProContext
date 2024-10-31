@@ -14,7 +14,9 @@ use App\Http\Requests\Pagination\PaginationRequest;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Resources\User\UserResource;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
@@ -30,7 +32,7 @@ class UserController extends Controller
         return UserResource::collection($users);
     }
 
-    public function store(StoreUserRequest $request, StoreUserAction $action): UserResource
+    public function store(StoreUserRequest $request, StoreUserAction $action): JsonResponse
     {
         $userDTO = new UserDTO([
             'name' => $request->getName(),
@@ -40,7 +42,7 @@ class UserController extends Controller
 
         $user = $action->execute($userDTO);
 
-        return new UserResource($user);
+        return (new UserResource($user))->response()->setStatusCode(201);
     }
 
     public function show(int $id, ShowUserAction $action): UserResource
@@ -50,7 +52,7 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
-    public function update(UpdateUserRequest $request, int $id, UpdateUserAction $action)
+    public function update(UpdateUserRequest $request, int $id, UpdateUserAction $action): UserResource
     {
         $userDTO = new UserDTO($request->validated());
 
@@ -59,7 +61,7 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
-    public function destroy(int $id, DestroyUserAction $action)
+    public function destroy(int $id, DestroyUserAction $action): Response
     {
         $action->execute($id);
 

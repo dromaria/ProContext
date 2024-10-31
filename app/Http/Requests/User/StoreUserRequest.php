@@ -4,7 +4,6 @@ namespace App\Http\Requests\User;
 
 
 use App\Http\Requests\BaseRequest;
-use Illuminate\Validation\Rule;
 
 class StoreUserRequest extends BaseRequest
 {
@@ -18,7 +17,6 @@ class StoreUserRequest extends BaseRequest
                 'max:255',
                 'email',
                 'lowercase',
-                Rule::unique('users'),
             ],
             'age' => ['required', 'integer', 'numeric', 'between:1,200'],
         ];

@@ -22,6 +22,9 @@ class UserRepository implements UserRepositoryInterface
 
     public function store(UserDTO $userDTO): Model|User
     {
+        if (User::where('email', $userDTO->email)->exists()){
+            abort(422, 'The email has already been taken.');
+        }
         return User::create($userDTO->toArray());
     }
 
@@ -32,12 +35,15 @@ class UserRepository implements UserRepositoryInterface
         } catch (ModelNotFoundException) {
             throw new NotFoundHttpException("User with ID {$id} is not found");
         }
-
     }
 
     public function update(int $id, UserDTO $userDTO): Model|User
     {
         $user = $this->show($id);
+
+        if (User::where('email', $userDTO->email)->where('id', '!=', $id)->exists()){
+            abort(422, 'The email has already been taken.');
+        }
         $user->update($userDTO->toArray());
         return $user;
     }
